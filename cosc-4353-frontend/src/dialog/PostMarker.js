@@ -59,7 +59,7 @@ const PostMarker = (props) => {
       
         console.log(data);
         
-       // axios.post('url',data).
+       // axios.post('url', data).
           
       
 

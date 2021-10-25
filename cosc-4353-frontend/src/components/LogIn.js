@@ -19,22 +19,55 @@ import {
   useHistory,
 } from 'react-router-dom';
 
+// Success/Error Alerts
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
+
 export default function LogIn() {
   const { login } = React.useContext(AuthContext);
 
+  const [openError, setOpenError] = React.useState(false);
+  const [error, setError] = React.useState("");
+
   const history = useHistory();
+
+  const findError = (err) => {
+    let errorMessage = "";
+    console.log(err.code)
+    switch (err.code) {
+      case "auth/invalid-email":
+        errorMessage = "Please provide a valid email address";
+        break;
+      case "auth/internal-error":
+        errorMessage = "Please provide a password";
+        break;
+      case "auth/user-not-found":
+        errorMessage = "You don't have an account with us. Please sign up.";
+        break;
+      case "auth/wrong-password":
+        errorMessage = "Wrong password. Please try again.";
+        break;
+      default:
+        errorMessage = "An undefined error happened.";
+    }
+    return errorMessage;
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
     login(data.get('email'), data.get('password'))
-    .then(user => {
+      .then(user => {
         history.push('/map')
-    }).catch(err => {
+        setOpenError(false)
+      }).catch(err => {
         console.log(err);
-        alert(err);
-    });
+        setError(findError(err)); //Change later
+        setOpenError(true)
+      });
 
     // eslint-disable-next-line no-console
     console.log({
@@ -44,69 +77,89 @@ export default function LogIn() {
   };
 
   return (
-   
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
+
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Collapse in={openError}>
+          <Alert
+            action={
+              <IconButton
+                aria-label="close"
+                color="inherit"
+                size="small"
+                onClick={() => {
+                  setOpenError(false);
+                }}
+              >
+                <CloseIcon fontSize="inherit" />
+              </IconButton>
+            }
+            sx={{ mb: 2 }}
+            severity="error"
+          >
+            {error}
+          </Alert>
+        </Collapse>
+
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
             </Grid>
-          </Box>
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
-      </Container>
-  
+      </Box>
+    </Container>
+
   );
 }

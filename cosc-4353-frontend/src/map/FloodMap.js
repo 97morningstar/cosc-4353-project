@@ -6,9 +6,17 @@ import Geocoder from "react-map-gl-geocoder";
 import Markers from '../components/Markers';
 
 
-import { doc, getDoc } from "firebase/firestore";
-import { db } from '../firebase/firebase'
-import { collection, query, where, getDocs } from "firebase/firestore";
+
+
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Button from '@mui/material/Button';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+
 
 
 // Firebase Code
@@ -71,11 +79,72 @@ const FloodMap = () => {
 
   return (
     <>
+
+
+
       <div style={{ height: "100vh", display: "flex", justifyContent: "center" }}>
+
         <div
-          ref={geocoderContainerRef}
-          style={{ position: "absolute", top: 20, width: "90%", zIndex: 1 }}
+
+          style={{ position: "absolute", top: '80px', width: "90%", zIndex: 1 }}
         />
+
+
+        <AppBar
+
+          position="fixed" style={{
+            background: "rgba(25,118,210,1)",
+            display: "flex",
+            width: "100%",
+
+
+          }}>
+
+
+
+
+
+
+          <Toolbar>
+           
+              <Grid item  xs={1}>
+                <Link href="/" style={{ color: '#fff' }}>
+                  NextFlood
+                </Link>
+              </Grid>
+              <Grid ref={geocoderContainerRef} item xs={12} justifyContent="flex-end" spacing={3} style={{ marginRight: '20px' }}>
+
+
+
+              </Grid>
+              
+              <Grid item  xs={1} style={{textAlign:'end'}}>
+              
+                <Button
+                  size="small"
+                  color="inherit"
+                  href="/login"
+                >
+                  <AccountCircleIcon style={{margin: '10px'}}/>
+                    Login
+                </Button>
+              </Grid>
+              <Grid item xs={1} style={{textAlign:'end'}}>
+                <Button
+                  size="small"
+                  color="inherit"
+
+                  href="/signup"
+                >
+                  <ExitToAppIcon style={{margin: '10px'}}/>
+                  Sign Up
+                </Button>
+              </Grid>
+            
+          </Toolbar>
+        </AppBar>
+
+
 
         <MapGL
           ref={mapRef}
@@ -97,18 +166,19 @@ const FloodMap = () => {
             openPostMarker={openPostMarker}
             setOpenPostMarker={setOpenPostMarker} />}
 
+
+          <GeolocateControl
+            style={geolocateStyle}
+            positionOptions={positionOptions}
+            trackUserLocation
+          />
+
           <Geocoder
             mapRef={mapRef}
             containerRef={geocoderContainerRef}
             onViewportChange={handleGeocoderViewportChange}
             mapboxApiAccessToken={MAPBOX_TOKEN}
             position="top-left"
-          />
-
-          <GeolocateControl
-            style={geolocateStyle}
-            positionOptions={positionOptions}
-            trackUserLocation
           />
 
         </MapGL>
