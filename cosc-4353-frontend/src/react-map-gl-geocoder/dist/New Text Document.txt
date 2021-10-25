@@ -1,0 +1,78 @@
+import logo from './logo.svg';
+
+import "mapbox-gl/dist/mapbox-gl.css";
+import "./mapbox-gl/dist/mapbox-gl-geocoder.css";
+
+import React, { useState, useCallback, useRef } from 'react';
+import './App.css';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import Geocoder from 'react-mapbox-gl-geocoder';
+
+const MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoicGlvbmVlci1tZSIsImEiOiJja2Q0djI3eDExbDduMnhtdHdxY3BsNXZjIn0.Y6TcDT4HSICrjdzeQxRLoA"
+
+function App() {
+
+  const [viewport, setViewport] = useState({
+    latitude: 29.7589382,
+    longitude: -95.3676974,
+    width: "100vw",
+    height: "100vh",
+    zoom: 10
+  });
+
+  const geocoderContainerRef = useRef();
+  const mapRef = useRef();
+
+  const handleViewportChange = useCallback(
+    (newViewport) => setViewport(newViewport),
+    []
+  );
+
+
+    // if you are happy with Geocoder default settings, you can just use handleViewportChange directly
+    const handleGeocoderViewportChange = useCallback(
+      (newViewport) => {
+        const geocoderDefaultOverrides = { transitionDuration: 1000 };
+  
+        return handleViewportChange({
+          ...newViewport,
+          ...geocoderDefaultOverrides
+        });
+      },
+      [handleViewportChange]
+    );
+
+
+
+
+
+
+
+  return (
+    <div style={{ height: "100vh" }}>
+      <div
+        ref={geocoderContainerRef}
+        style={{ position: "absolute", top: 20, left: 20, zIndex: 1 }}
+      />
+     
+      <ReactMapGL
+      ref={mapRef}
+        {...viewport}
+        mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+        onViewportChange={handleViewportChange}
+        mapStyle="mapbox://styles/mapbox/streets-v11"
+
+      >
+        <Geocoder
+          mapRef={mapRef}
+          containerRef={geocoderContainerRef}
+          onViewportChange={handleGeocoderViewportChange}
+          mapboxApiAccessToken={MAPBOX_ACCESS_TOKEN}
+          position="top-left"
+        />
+      </ReactMapGL>
+    </div>
+  );
+}
+
+export default App;
