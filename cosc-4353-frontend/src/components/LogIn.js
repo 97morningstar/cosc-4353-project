@@ -35,7 +35,7 @@ export default function LogIn() {
 
   const findError = (err) => {
     let errorMessage = "";
-    console.log(err.code)
+  
     switch (err.code) {
       case "auth/invalid-email":
         errorMessage = "Please provide a valid email address";
@@ -61,6 +61,8 @@ export default function LogIn() {
 
     login(data.get('email'), data.get('password'))
       .then(user => {
+      
+        localStorage.setItem("token", user.user.accessToken);
         history.push('/map')
         setOpenError(false)
       }).catch(err => {
@@ -69,11 +71,7 @@ export default function LogIn() {
         setOpenError(true)
       });
 
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+   
   };
 
   return (

@@ -1,0 +1,5 @@
+C:\School\Fall 2021\COSC 4353\Project\cosc-4353-backend\FloodDataAccess\obj\Debug\net5.0\FloodDataAccess.csprojAssemblyReference.cache
+C:\School\Fall 2021\COSC 4353\Project\cosc-4353-backend\FloodDataAccess\obj\Debug\net5.0\FloodDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\School\Fall 2021\COSC 4353\Project\cosc-4353-backend\FloodDataAccess\obj\Debug\net5.0\FloodDataAccess.AssemblyInfoInputs.cache
+C:\School\Fall 2021\COSC 4353\Project\cosc-4353-backend\FloodDataAccess\obj\Debug\net5.0\FloodDataAccess.AssemblyInfo.cs
+C:\School\Fall 2021\COSC 4353\Project\cosc-4353-backend\FloodDataAccess\obj\Debug\net5.0\FloodDataAccess.csproj.CoreCompileInputs.cache

@@ -5,9 +5,6 @@ import MapGL, { GeolocateControl } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 import Markers from '../components/Markers';
 
-
-
-
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
@@ -17,7 +14,9 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
-
+import {
+  useHistory,
+} from 'react-router-dom';
 
 // Firebase Code
 import { AuthContext } from '../context/AuthContext';
@@ -26,7 +25,6 @@ const MAPBOX_TOKEN =
   "pk.eyJ1IjoicGlvbmVlci1tZSIsImEiOiJja2Q0djI3eDExbDduMnhtdHdxY3BsNXZjIn0.Y6TcDT4HSICrjdzeQxRLoA";
 
 const FloodMap = () => {
-
   const [viewport, setViewport] = useState({
     latitude: 29.7589382,
     longitude: -95.3676974,
@@ -41,15 +39,14 @@ const FloodMap = () => {
     (newViewport) => setViewport(newViewport),
     []
   );
-  const { currentUser } = React.useContext(AuthContext);
-
+  const { currentUser, logout } = React.useContext(AuthContext);
+  const history = useHistory();
 
   // Locate User
   const geolocateStyle = {
     bottom: 20,
     right: 20,
     margin: 10
-
   };
   const positionOptions = { enableHighAccuracy: true };
 
@@ -68,24 +65,34 @@ const FloodMap = () => {
 
   // Handle Click on map
   const handleClickOnMap = ({ lngLat: [longitude, latitude] }) => {
-    setMarker({ longitude, latitude })
 
-    setOpenPostMarker(true);
+    if (currentUser) {
+      setMarker({ longitude, latitude })
+      setOpenPostMarker(true);
+    } else {
+      console.log('No logged in user');
+    }
   }
 
   useEffect(() => {
 
   }, [])
 
+  const handleLogOut = () => {
+    logout()
+      .then(res => {
+        localStorage.clear();
+        history.push('/')
+      })
+      .catch(err => {
+
+      });
+  }
+
   return (
     <>
-
-
-
       <div style={{ height: "100vh", display: "flex", justifyContent: "center" }}>
-
         <div
-
           style={{ position: "absolute", top: '80px', width: "90%", zIndex: 1 }}
         />
 
@@ -96,51 +103,61 @@ const FloodMap = () => {
             background: "rgba(25,118,210,1)",
             display: "flex",
             width: "100%",
-
-
           }}>
 
-
-
-
-
-
           <Toolbar>
-           
-              <Grid item  xs={1}>
-                <Link href="/" style={{ color: '#fff' }}>
-                  NextFlood
-                </Link>
-              </Grid>
-              <Grid ref={geocoderContainerRef} item xs={12} justifyContent="flex-end" spacing={3} style={{ marginRight: '20px' }}>
+            <Grid item xs={1}>
+              <Link href="/" style={{ color: '#fff' }}>
+                NextFlood
+              </Link>
+            </Grid>
+            <Grid ref={geocoderContainerRef} item xs={8} justifyContent="flex-end" spacing={3} style={{ marginRight: '20px' }}>
 
+            </Grid>
+            {currentUser ? (
+              <>
+                <Grid item xs={1} style={{ textAlign: 'end' }}>
+                  Hello {currentUser.firstName}!
+                </Grid>
+                <Grid item xs={1} style={{ textAlign: 'end' }}>
+                  <Button
+                    size="small"
+                    color="inherit"
+                    onClick={handleLogOut}
+                  >
+                    <ExitToAppIcon style={{ margin: '10px' }} />
+                    LOG OUT
+                  </Button>
+                </Grid>
+              </>
 
-
-              </Grid>
-              
-              <Grid item  xs={1} style={{textAlign:'end'}}>
-              
-                <Button
-                  size="small"
-                  color="inherit"
-                  href="/login"
-                >
-                  <AccountCircleIcon style={{margin: '10px'}}/>
+            ) : (
+              <>
+                <Grid item xs={1} style={{ textAlign: 'end' }}>
+                  <Button
+                    size="small"
+                    color="inherit"
+                    href="/login"
+                  >
+                    <AccountCircleIcon style={{ margin: '10px' }} />
                     Login
-                </Button>
-              </Grid>
-              <Grid item xs={1} style={{textAlign:'end'}}>
-                <Button
-                  size="small"
-                  color="inherit"
+                  </Button>
+                </Grid>
 
-                  href="/signup"
-                >
-                  <ExitToAppIcon style={{margin: '10px'}}/>
-                  Sign Up
-                </Button>
-              </Grid>
-            
+                <Grid item xs={1} style={{ textAlign: 'end' }}>
+                  <Button
+                    size="small"
+                    color="inherit"
+
+                    href="/signup"
+                  >
+                    <ExitToAppIcon style={{ margin: '10px' }} />
+                    Sign Up
+                  </Button>
+                </Grid>
+              </>
+            )
+            }
           </Toolbar>
         </AppBar>
 
@@ -167,11 +184,6 @@ const FloodMap = () => {
             setOpenPostMarker={setOpenPostMarker} />}
 
 
-          <GeolocateControl
-            style={geolocateStyle}
-            positionOptions={positionOptions}
-            trackUserLocation
-          />
 
           <Geocoder
             mapRef={mapRef}
@@ -179,6 +191,13 @@ const FloodMap = () => {
             onViewportChange={handleGeocoderViewportChange}
             mapboxApiAccessToken={MAPBOX_TOKEN}
             position="top-left"
+          />
+
+
+          <GeolocateControl
+            style={geolocateStyle}
+            positionOptions={positionOptions}
+            trackUserLocation
           />
 
         </MapGL>

@@ -2,7 +2,7 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="FloodDBModelStoreContainer" CdmEntityContainer="FloodDBEntities">
     <EntitySetMapping Name="Locations">
-      <EntityTypeMapping TypeName="FloodDBModel.Location">
+      <EntityTypeMapping TypeName="IsTypeOf(FloodDBModel.Location)">
         <MappingFragment StoreEntitySet="Locations">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -17,7 +17,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="FloodDBModel.User">
+      <EntityTypeMapping TypeName="IsTypeOf(FloodDBModel.User)">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Email" ColumnName="Email" />

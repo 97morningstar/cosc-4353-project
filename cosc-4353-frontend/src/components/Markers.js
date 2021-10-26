@@ -5,32 +5,59 @@ import alertmarker from '../assets/alert-icon-1559-min.png';
 
 import ViewMarker from '../dialog/ViewMarker';
 import PostMarker from '../dialog/PostMarker';
+import AuthProvider, { AuthContext } from '../context/AuthContext';
+import { MarkChatReadSharp } from "@mui/icons-material";
+
 
 const Markers = (props) => {
+
+  const { currentUser, allMarkers, setAllMarkers } = React.useContext(AuthContext);
 
   const { setMarker, marker, openPostMarker, setOpenPostMarker } = props;
 
   //Place Markers
-  const [markers, setMarkers] = useState([]);
+
+
+  const [markers, setMarkers] = useState([]); // Give all markers
+
+  const [ownMarkers, setOwnMarkers] = useState([]); // Give own markers
+
   const [openViewMarker, setViewMarker] = useState(false);
   const [information, setInformation] = useState({});
 
   const handleOpenViewMarker = (datum) => {
     setViewMarker(true);
     setInformation(datum);
-    console.log(datum)
+ 
   }
 
   const handleCloseViewMarker = () => {
     setViewMarker(false);
   }
 
+  useEffect(() => {
+    if(currentUser){
+      setOwnMarkers(currentUser.markers);
+
+     // setAllMarkers(allMarkers);
+    
+    }
+    else{
+      console.log('No user')
+    }
+  })
+
+  useEffect(() => {
+    console.log("Component has updated");
+}, [markers]);
+
   return (
     <>
       <PostMarker
         marker={marker}
         setMarker={setMarker}
-        setMarkers={setMarkers}
+        setAllMarkers={setAllMarkers}
+        setOwnMarkers={setOwnMarkers}
         openPostMarker={openPostMarker}
         setOpenPostMarker={setOpenPostMarker}
       />
@@ -40,7 +67,7 @@ const Markers = (props) => {
         openViewMarker={openViewMarker}
         information={information} />
 
-      {markers.map(datum => (
+      {allMarkers.map(datum => (
         <Marker key={datum.id} longitude={datum.longitude} latitude={datum.latitude} >
           <div className={"marker-container " + datum.severity} >
             <img width="25px" src={alertmarker} onClick={() => handleOpenViewMarker(datum)} />

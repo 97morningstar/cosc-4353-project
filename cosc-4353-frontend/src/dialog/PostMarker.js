@@ -17,6 +17,9 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { AuthContext } from '../context/AuthContext';
 
+import { db } from '../firebase/firebase'
+import { collection, addDoc } from "firebase/firestore";
+import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 
 const Transition = React.forwardRef((props, ref) => {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -24,13 +27,13 @@ const Transition = React.forwardRef((props, ref) => {
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
-  
+});
+
 
 const PostMarker = (props) => {
 
     const { currentUser } = React.useContext(AuthContext);
-    const { marker, setMarker, setMarkers, openPostMarker, setOpenPostMarker } = props;
+    const { marker, setMarker, setAllMarkers, openPostMarker, setOpenPostMarker, setOwnMarkers } = props;
 
     // Success/Error
     const [successSave, setSuccess] = useState(false);
@@ -49,29 +52,47 @@ const PostMarker = (props) => {
 
     const handleSave = () => {
 
-        const data = {
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-            user_id: currentUser.uid,
-            description: marker.description,
-            severity: marker.severity
-          }
-      
-        console.log(data);
-        
-       // axios.post('url', data).
-          
-      
+        if (currentUser) {
+
+            if (marker.severity) {
+
+                const data = {
+                    latitude: marker.latitude,
+                    longitude: marker.longitude,
+                    user_id: currentUser.uid,
+                    description: marker.description ? marker.description : "",
+                    severity: marker.severity
+                }
+
+                // Update markers array in firestore
+                const markerRef = doc(db, 'users', currentUser.userid);
+
+                updateDoc(markerRef,
+                    {
+                        markers: arrayUnion(data)
+                    }
+                ).then(res => {
+                    setOwnMarkers(markers => [...markers, marker])
+                   // setMarkers(markers => [...markers, marker]); // success
+
+                   setAllMarkers(markers => markers.concat(marker));
+
+                    setOpenPostMarker(false);
+                    setSuccess(true);
+                })
+                    .catch(err => {
+                        console.log(err)
+                    })
+
+                // axios.post('url', data).
 
 
-
-        if (marker.severity) {
-            setMarkers(markers => [...markers, marker]); // success
-            setOpenPostMarker(false);
-            setSuccess(true);
+            } else {
+                // error
+                setError(true);
+            }
         } else {
-            // error
-            setError(true);
+            console.log("No account")
         }
     }
 

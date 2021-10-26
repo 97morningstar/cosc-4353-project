@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net4.8</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Oracle.ManagedDataAccess" Version="21.3.0" />
+    <PackageReference Include="Oracle.ManagedDataAccess.EntityFramework" Version="21.3.0" />
+  </ItemGroup>
+
+</Project>

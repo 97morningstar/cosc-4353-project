@@ -1,5 +1,10 @@
 import firebase from 'firebase/compat/app';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword,
+  signOut } from "firebase/auth";
 import { getFirestore } from "firebase/firestore"
 
 const app = firebase.initializeApp({
@@ -11,11 +16,10 @@ const app = firebase.initializeApp({
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 })
 
-console.log(app);
-
 export const auth = getAuth();
 export const signupFirebase = createUserWithEmailAndPassword;
 export const setUserFirebase = onAuthStateChanged;
 export const logInUserFirebase = signInWithEmailAndPassword;
+export const LogOut = signOut;
 export const db = getFirestore(); 
 export default app;
