@@ -50,52 +50,87 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FloodModel.Context.cs">
+    <Compile Include="FloodModel\FloodModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FloodModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="FloodModel.cs">
+    <Compile Include="FloodModel\FloodModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FloodModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="FloodModel.Designer.cs">
+    <Compile Include="FloodModel\FloodModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FloodModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Location.cs">
+    <Compile Include="FloodModel\Location.cs">
       <DependentUpon>FloodModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MarkerPointsModel\MarkerPoint.cs">
+      <DependentUpon>MarkerPointsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarkerPointsModel\MarkerPointsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarkerPointsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarkerPointsModel\MarkerPointsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarkerPointsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarkerPointsModel\MarkerPointsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarkerPointsModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs">
+    <Compile Include="FloodModel\User.cs">
       <DependentUpon>FloodModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="FloodModel.edmx">
+    <EntityDeploy Include="FloodModel\FloodModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FloodModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="FloodModel.edmx.diagram">
+    <None Include="FloodModel\FloodModel.edmx.diagram">
       <DependentUpon>FloodModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="MarkerPointsModel\MarkerPointsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MarkerPointsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="MarkerPointsModel\MarkerPointsModel.edmx.diagram">
+      <DependentUpon>MarkerPointsModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FloodModel.Context.tt">
+    <Content Include="FloodModel\FloodModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FloodModel.Context.cs</LastGenOutput>
       <DependentUpon>FloodModel.edmx</DependentUpon>
     </Content>
-    <Content Include="FloodModel.tt">
+    <Content Include="FloodModel\FloodModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FloodModel.edmx</DependentUpon>
       <LastGenOutput>FloodModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="MarkerPointsModel\MarkerPointsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MarkerPointsModel.edmx</DependentUpon>
+      <LastGenOutput>MarkerPointsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MarkerPointsModel\MarkerPointsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MarkerPointsModel.edmx</DependentUpon>
+      <LastGenOutput>MarkerPointsModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
