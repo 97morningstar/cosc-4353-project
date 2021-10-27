@@ -38,7 +38,7 @@ export default function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = setUserFirebase(auth, user => {
             
-            if(user) {
+           if(user) {
             const q = query(collection(db, "users"), where("uid", "==", user.uid));
 
             getDocs(q)
@@ -64,9 +64,11 @@ export default function AuthProvider({ children }) {
                     console.log(err)
                 });
 
+                 }
+
 
                 // Getting all markers
-                const q1 = collection(db, "users");
+             /*   const q1 = collection(db, "users");
 
                 getDocs(q1)
                 .then(querySnapshot => {
@@ -76,10 +78,10 @@ export default function AuthProvider({ children }) {
                 })
                 .catch(err => {
                     console.log(err)
-                });
+                });*/
 
 
-            }
+           
 
             setLoading(false);
          
