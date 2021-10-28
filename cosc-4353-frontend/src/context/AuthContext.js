@@ -68,7 +68,7 @@ export default function AuthProvider({ children }) {
 
 
                 // Getting all markers
-             /*   const q1 = collection(db, "users");
+                const q1 = collection(db, "users");
 
                 getDocs(q1)
                 .then(querySnapshot => {
@@ -78,7 +78,7 @@ export default function AuthProvider({ children }) {
                 })
                 .catch(err => {
                     console.log(err)
-                });*/
+                });
 
 
            

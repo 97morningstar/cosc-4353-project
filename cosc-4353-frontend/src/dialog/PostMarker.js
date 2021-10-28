@@ -71,7 +71,7 @@ const PostMarker = (props) => {
 
 
                 // Update markers array in firestore
-              /*  const markerRef = doc(db, 'users', currentUser.userid);
+               const markerRef = doc(db, 'users', currentUser.userid);
 
                 updateDoc(markerRef,
                     {
@@ -88,7 +88,10 @@ const PostMarker = (props) => {
                 })
                     .catch(err => {
                         console.log(err)
-                    })*/
+                    })
+
+
+
 
                 // axios.post('url', data).
 

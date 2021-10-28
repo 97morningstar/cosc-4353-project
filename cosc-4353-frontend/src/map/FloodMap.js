@@ -21,6 +21,13 @@ import {
 // Firebase Code
 import { AuthContext } from '../context/AuthContext';
 
+// @ts-ignore
+import mapboxgl from "mapbox-gl";
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
+
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoicGlvbmVlci1tZSIsImEiOiJja2Q0djI3eDExbDduMnhtdHdxY3BsNXZjIn0.Y6TcDT4HSICrjdzeQxRLoA";
 
@@ -111,7 +118,7 @@ const FloodMap = () => {
                 NextFlood
               </Link>
             </Grid>
-            <Grid ref={geocoderContainerRef} item xs={8} justifyContent="flex-end" spacing={3} style={{ marginRight: '20px' }}>
+            <Grid ref={geocoderContainerRef} item xs={8} justifyContent="flex-end" style={{ marginRight: '20px' }}>
 
             </Grid>
             {currentUser ? (

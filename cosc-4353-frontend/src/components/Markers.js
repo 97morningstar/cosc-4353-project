@@ -42,13 +42,11 @@ const Markers = (props) => {
      // setAllMarkers(allMarkers);
     
     }
-    else{
-      console.log('No user')
-    }
+   
   })
 
   useEffect(() => {
-    console.log("Component has updated");
+    //console.log("Component has updated");
 }, [markers]);
 
   return (
@@ -67,8 +65,8 @@ const Markers = (props) => {
         openViewMarker={openViewMarker}
         information={information} />
 
-      {allMarkers.map(datum => (
-        <Marker key={datum.id} longitude={datum.longitude} latitude={datum.latitude} >
+      {allMarkers.map((datum, index) => (
+        <Marker key={index} longitude={datum.longitude} latitude={datum.latitude} >
           <div className={"marker-container " + datum.severity} >
             <img width="25px" src={alertmarker} onClick={() => handleOpenViewMarker(datum)} />
           </div>
