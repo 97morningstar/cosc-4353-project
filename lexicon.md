@@ -11,6 +11,8 @@ Firebase - The platform that was used to serve as the foundation for our applica
 
 Flooddb - The name of the database that stores the data from our software
 
+JSON - A JSON document database is a type of nonrelational database that is designed to store and query data as JSON documents
+
 Map - A diagrammatic representation of an area of land (in our case is Houston and its surrounding area)
 
 Marker - A object that is used to precisely indicate where a flood has been reported
