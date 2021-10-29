@@ -76,6 +76,8 @@ Go to the folder you just created and copy the contents of the zip file there
 
 `npm install -g nodemon`
 
+> Remember to add the remote repository to your local git repo
+
 ### To run the project in the root folder run :runner:
 `nodemon`
 
