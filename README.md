@@ -104,6 +104,8 @@ Go to the folder you just created and copy the contents of the zip file there
 
 2. Running scripts is disabled on this system
 
+#### Solution :pill:
+
 Run Powershell as Admin, and then:
 
 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
