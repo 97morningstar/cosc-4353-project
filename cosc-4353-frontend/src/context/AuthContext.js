@@ -9,6 +9,7 @@ import {
 
 import { doc, getDoc } from "firebase/firestore";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import axios from "axios";
 
 export const AuthContext = React.createContext();
 
@@ -68,7 +69,7 @@ export default function AuthProvider({ children }) {
 
 
                 // Getting all markers
-                const q1 = collection(db, "users");
+              /*  const q1 = collection(db, "users");
 
                 getDocs(q1)
                 .then(querySnapshot => {
@@ -78,6 +79,36 @@ export default function AuthProvider({ children }) {
                 })
                 .catch(err => {
                     console.log(err)
+                });*/
+
+                axios.get("http://localhost:4000/api/view_all_markers/")
+                .then((res) => {
+  
+                 let s = ['none', 'low', 'moderate', 'major', 'critical'];  
+                  
+                  setAllMarkers(res.data.map(data => {
+
+                    
+
+                      return {
+                          longitude: parseFloat(data.longitude),
+                          latitude: parseFloat(data.latitude),
+                          severity: s[data.severity],
+                          description: data.description,
+                          user_id: data.user_id
+
+                      }
+                  }));
+
+                  console.log(res.data)
+                  console.log("Hey")
+                  
+  
+                  //console.log("Employee Firstname:", res.data[0].first_name);
+  
+                })
+                .catch((err) => {
+                  console.log(err);
                 });
 
 
