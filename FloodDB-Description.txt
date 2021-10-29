@@ -1,8 +1,3 @@
-Database Login Credentials:
-Host: flooddb-1.camvkj4v7my9.us-east-2.rds.amazonaws.com
-User: admin
-Password: Japeys123#
-Database: flooddb
 Our database is remotely stored on a RDS (Relational Database Service) SQL Database that is managed by AWS (Amazon Web Services). The database name is “flooddb” and contains one table called “markerpoints.” The markerpoints contains the following attributes: 
 	Table:markerpoints
 	Columns:
