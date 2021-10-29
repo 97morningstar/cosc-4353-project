@@ -5,7 +5,7 @@
 Users will be able to post geotagged videos, photos, and texts that automatically will be added to our map allowing other users to make independent decisions safely and navigate in response to the flood in real-time increasing the protection of citizens and their belongings.
 Users will also can add a level of severity, and specify if the flood is still happening on that area. After a certain number of users specify that the flood is gone we'll remove that marker.
 
-![1](https://user-images.githubusercontent.com/26909101/139370554-9cdde8ea-b6d0-4a22-87ed-1422a8457b71.PNG)
+![1](https://user-images.githubusercontent.com/26909101/139370554-9cdde8ea-b6d0-4a22-87ed-1422a8457b71.PNG =250x)
 
 
 ## 2. Login and Signup
