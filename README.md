@@ -110,7 +110,7 @@ Run Powershell as Admin, and then:
 
 `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
-Please refer to the information provided here: [solution](https://discord.com/channels/893349245913010207/900930240002551828/903147115360976967)
+Please refer to the information provided here: [solution](https://stackoverflow.com/questions/63423584/how-to-fix-error-nodemon-ps1-cannot-be-loaded-because-running-scripts-is-disabl)
 
 ### All of our queries and code are in the following files :hammer:
 /routes
