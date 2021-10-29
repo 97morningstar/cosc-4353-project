@@ -36,6 +36,9 @@ Users can vizualize the information on each marker
 
 Users can search and locate areas where they wish to know about the flood
 
+![6](https://user-images.githubusercontent.com/26909101/139371381-7b9a8db9-8e56-4eb1-9ab7-47d4130dcd8c.PNG)
+
+
 ## 7. Geolocate User
 
 Users can specify their location to visualize affected areas near them  
