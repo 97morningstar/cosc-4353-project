@@ -1,2 +1,6 @@
 node_modules/
 .env
+/cosc-4353-backend/FloodDataAccess/obj/Release/FloodDataAccess.csproj.AssemblyReference.cache
+/cosc-4353-backend/FloodDataAccess/obj/Debug/FloodDataAccess.csproj.AssemblyReference.cache
+/.vs/cosc-4353-project/config/applicationhost.config
+/.gitattributes
