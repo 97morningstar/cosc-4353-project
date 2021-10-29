@@ -2,32 +2,32 @@
 ### COSC-4353-Project 
 ### Minimum Viable Product
 
-# Team Members
+## Team Members
 
 1. Alex Hernandez
 2. Nicholas Brown
 3. Elisa Martinez
 
-# Website Link
+## Website Link
 
 Not available yet
 
-# Database file (mySQL)
+## Database file (mySQL)
 
 Database is in the Database-Schema, but also it is hosted using Microservices: AWS: Amazon RDS for SQL Server
 
-# Login Information
+## Login Information
 
-### User
+#### User
 
 email: 123martinezfuenteselisa@gmail.com
 
 password: 123456
 
-#### Note
+##### Note
 All authentication and authorization handled by microservice provided by Google: Firebase Authentication, and Firbase Firestore Database
 
-## Instructions (How to install) :receipt:
+### Instructions (How to install) :receipt:
 > You need to have installed: npm, git, nodejs
 
 Links:
@@ -37,7 +37,7 @@ Links:
 
 1. Create a folder in your computer
 
-### If working with the remote repository:
+#### If working with the remote repository:
 
 Type in the command line:
 
@@ -58,7 +58,7 @@ Type in the command line:
 `npm install -g nodemon`
 
 
-### If working with the local repository:
+#### If working with the local repository:
 
 Type in the command line:
 
@@ -76,13 +76,13 @@ Go to the folder you just created and copy the contents of the zip file there
 
 `npm install -g nodemon`
 
-## To run the project in the root folder run :runner:
+### To run the project in the root folder run :runner:
 `nodemon`
 
-## Possible Problems :massage_man:
+### Possible Problems :massage_man:
 1. react-scripts is missing or not installed when running the project with nodemon
 
-### Solution :pill:
+#### Solution :pill:
 
 1. Run the following in the ./client:
 
@@ -108,10 +108,10 @@ Run Powershell as Admin, and then:
 
 Please refer to the information provided here: [solution](https://discord.com/channels/893349245913010207/900930240002551828/903147115360976967)
 
-## All of our queries and code are in the following files :hammer:
+### All of our queries and code are in the following files :hammer:
 /routes
 
-## Branching :octocat:
+### Branching :octocat:
 
 > We create branches so we can work at the same time and then we merge those branches with the main one
 
@@ -119,7 +119,7 @@ Please refer to the information provided here: [solution](https://discord.com/ch
 2. `git checkout {your-branch-name}`
 3. `git push --set-upstream origin {your-branch-name}`
 
-## To push your work to the shared repo run in the root folder. 
+### To push your work to the shared repo run in the root folder. 
 
 > Never push if you haven't pull the latest code and solve the merging conflicts locally if any
 
@@ -127,21 +127,21 @@ Please refer to the information provided here: [solution](https://discord.com/ch
 2. `git commit -m "Your message, what you did in the code"`
 3. `git push`
 
-## To pull from master
+### To pull from master
 
 > Always pull before starting to work for the day, or first verify that you have the latest code
 > Make sure to know your remote origin
 
 1. `git pull origin heroku-deploy` This is not setup yet
 
-## How to open a pull request
+### How to open a pull request
 
 > Pull requests or PRs are basically how you merge your changes with the master code. They will be revised by a member of the group and that member will post comments on your code and ask you to fix those.
 
 1. Once you push your code you will see a green message saying if you want to create a pull request. Always do a pull request to master branch as it is the main branch. Do not delete your own branch as you will continue to use it, or you can also deleted and create a new one each time you add a new feature
 2. You can also click on Pull Request and open one there.
 
-## Tech Stack
+### Tech Stack
 
 nodejs :sparkle:
 
@@ -153,7 +153,7 @@ mysql :key:
 
 heroku :rocket: [Not yet]
 
-## To test your queries
+### To test your queries
 
 To test the queries:
 
