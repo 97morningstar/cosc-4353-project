@@ -14,7 +14,7 @@ Not available yet
 
 ## Database file (mySQL)
 
-Database is in the Database-Schema, but also it is hosted using Microservices: AWS: Amazon RDS for SQL Server
+Database is in the Database-Schema folder, but also it is hosted using Microservices: AWS: Amazon RDS for SQL Server
 
 ## Login Information
 
