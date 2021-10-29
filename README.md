@@ -1,6 +1,6 @@
 # NextFlood :earth_americas::cyclone: 
 ### COSC-4353-Project 
-### Minimal Viable Product
+### Minimum Viable Product
 
 # Team Members
 
