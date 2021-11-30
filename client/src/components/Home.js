@@ -35,6 +35,8 @@ const VideoPlayer = styled(CardMedia)`
 const Home = () => {
   const history = useHistory();
 
+  
+
   const handleLogIn = () => {
     history.push('/login');
   }
@@ -55,7 +57,6 @@ const Home = () => {
       <Grid item xs={12}
         style={{
           position: 'relative',
-
           display: 'flex',
           height: '30rem'
         }}

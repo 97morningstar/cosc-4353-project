@@ -1,16 +1,21 @@
 const app = require('express').Router();
 const pool = require("../services/db")
 
-
 // get all items
 app.get("/view_all_markers", async (req, res) => {
-  try {
-      const all_markers = await pool.query("SELECT * FROM markerpoints");
+    try {
 
-    res.json(all_markers);
-  }catch (err) {
-    console.log(err.message);
-  }
+       
+      
+
+        const all_markers = await pool.query("SELECT * FROM markerpoints");
+
+        res.json(all_markers);
+
+      
+    } catch (err) {
+        console.log(err.message);
+    }
 })
 
 // get markers by userId
@@ -43,6 +48,8 @@ app.get("/view_severity_markers/:severity", async (req, res) => {
 // post marker point
 app.post("/create_point", async (req, res) => {
     try {
+
+
         const data = req.body;
 
         const newItem = await pool.query("INSERT INTO markerpoints(user_id, created_on, expires_after, latitude, longitude, description, severity) VALUES(?, NOW(), 0, ?, ?, ?, ?)",
@@ -53,11 +60,20 @@ app.post("/create_point", async (req, res) => {
             data.severity,
             ]);
 
-        res.json("A new marker point was added. Success");
+           
+  
+
+   
+        res.json(newItem);
+        
+
+
     } catch (err) {
         console.log(err.message);
     }
 });
+
+
 
 // update marker point by id (put)
 app.put("/update_point/:marker_id", async (req, res) => {
@@ -70,7 +86,7 @@ app.put("/update_point/:marker_id", async (req, res) => {
             data.longitude,
             data.description,
             data.severity,
-            marker_id
+                marker_id
             ]);
 
         res.json("A marker point was updated. Success");
