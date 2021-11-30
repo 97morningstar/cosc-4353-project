@@ -1,3 +1,5 @@
+https://app.travis-ci.com/97morningstar/cosc-4353-project.svg?branch=master
+
 # NextFlood :earth_americas::cyclone: 
 ### COSC-4353-Project 
 ### Minimum Viable Product
