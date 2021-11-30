@@ -167,3 +167,7 @@ To test the queries:
 4. Select the correct method (get, put, post, delete)
 5. Run the server in the command prompt
 6. Copy the localhost address and go to the link on the request (example: http://localhost:4000/api/view_all_markers)
+
+### Summary
+
+Flooding in the Houston area has become a part of our lives. Not only do we get hit every year with intense rain events that cause floods along rivers, creeks, roads, and bayous, but also hurricane season brings strong winds and dangerous rain conditions that cause destruction to our communities. Our world is every day more connected and our brave people from Houston are moved to help in every way they can to avoid these dangers. One simple way the public can help is through our web application NextFlood. The more our community uses it the more accurate it will be, increasing the resilience of our city. This product will strengthen security for families by maintaining them informed and safe during these rainfall events.
