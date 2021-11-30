@@ -1,4 +1,4 @@
-https://app.travis-ci.com/97morningstar/cosc-4353-project.svg?branch=master
+https://app.travis-ci.com/97morningstar/cosc-4353-project.svg
 
 # NextFlood :earth_americas::cyclone: 
 ### COSC-4353-Project 
