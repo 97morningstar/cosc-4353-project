@@ -2,7 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\client",
-    "\\client\\src"
+    "\\client\\src\\components",
+    "\\routes",
+    "\\tests"
   ],
+  "SelectedNode": "\\tests\\server.test.js",
   "PreviewInSolutionExplorer": false
 }
