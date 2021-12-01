@@ -5,3 +5,6 @@ before_install:
   - cd client
 script:
   - npm test
+after_script:
+  - cd ..
+  - npm test
