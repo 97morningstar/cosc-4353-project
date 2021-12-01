@@ -45,12 +45,13 @@ app.post("/create_point", async (req, res) => {
 
         const data = req.body;
 
-        const newItem = await pool.query("INSERT INTO markerpoints(user_id, created_on, expires_after, latitude, longitude, description, severity) VALUES(?, NOW(), 0, ?, ?, ?, ?)",
+        const newItem = await pool.query("INSERT INTO markerpoints(user_id, created_on, expires_after, latitude, longitude, description, severity, image) VALUES(?, NOW(), 0, ?, ?, ?, ?, ?)",
             [data.user_id,
             data.latitude,
             data.longitude,
             data.description,
             data.severity,
+            data.image.imageUrl
             ]);
 
            
