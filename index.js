@@ -10,9 +10,9 @@ const socket = require("socket.io");
 
 
 
-//middleware
+//middleware/*
 app.use(cors());
-app.use(express.json()); // allow us to access request body req.body
+app.use(express.json()); /// allow us to access request body req.body*/
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
@@ -28,10 +28,15 @@ app.use(express.static(path.join(__dirname, "client/build")));
 app.use("/api", require("./routes/marker"));
 
 
+const students = ["Elie", "Matt", "Joel", "Michael"];
+
+app.get("/get", (req, res) => {
+  return res.json(students);
+});
+
 
 /* Do not move from here */
 app.get('*', (request, response) => {
-  //console.log(__dirname+'/client/build'+'/'+'index.html')
 	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
@@ -47,9 +52,12 @@ app.use((err, req, res, next) => {
   return;
 });
 
+/*
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
+*/
 
 
 
+module.exports = app;

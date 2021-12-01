@@ -1,9 +1,3 @@
-const express = require("express");
-const routes = require("./routes/posts");
+const app = require("./index");
 
-const app = express();
-app.use(express.json());
-app.use("/api", routes);
-
-
-module.exports = app;
+app.listen(4000, () => console.log("server starting on port 4000!"));
