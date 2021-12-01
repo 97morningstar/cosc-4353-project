@@ -4,3 +4,6 @@ node_modules/
 /cosc-4353-backend/FloodDataAccess/obj/Debug/FloodDataAccess.csproj.AssemblyReference.cache
 /.vs/cosc-4353-project/config/applicationhost.config
 /.gitattributes
+
+.vs
+.git
