@@ -5,8 +5,9 @@ const port = process.env.PORT || 4000;
 const cors = require("cors");
 const pool = require("./services/db")
 const path = require("path");
+const socket = require("socket.io");
 
-// process.env.NODE_ENV => production or undefined
+
 
 
 //middleware
@@ -30,7 +31,7 @@ app.use("/api", require("./routes/marker"));
 
 /* Do not move from here */
 app.get('*', (request, response) => {
-  console.log(__dirname+'/client/build'+'/'+'index.html')
+  //console.log(__dirname+'/client/build'+'/'+'index.html')
 	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
@@ -49,4 +50,6 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 });
+
+
 

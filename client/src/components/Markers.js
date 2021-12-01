@@ -28,9 +28,7 @@ const Markers = (props) => {
     setViewMarker(true);
     setInformation(datum);
 
-    console.log('datum from markers', datum)
-    console.log('allMarkers from markers', allMarkers)
-
+   
  
   }
 

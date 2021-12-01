@@ -22,6 +22,10 @@ import { collection, addDoc } from "firebase/firestore";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import axios from "axios";
 
+import socketIOClient from "socket.io-client";
+import socketClient from "socket.io-client";
+import { io } from 'socket.io-client'
+
 const Transition = React.forwardRef((props, ref) => {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -39,6 +43,9 @@ const PostMarker = (props) => {
     // Success/Error
     const [successSave, setSuccess] = useState(false);
     const [errorSave, setError] = useState();
+
+    const [thing, setThing] = useState('');
+
 
     const handleClosePostMarker = () => {
         setOpenPostMarker(false);
@@ -58,9 +65,9 @@ const PostMarker = (props) => {
             if (marker.severity) {
 
 
-                let severityArray = ['none', 'low', 'moderate', 'major', 'critical'];   
+                let severityArray = ['none', 'low', 'moderate', 'major', 'critical'];
 
-               // console.log(severityArray.indexOf(marker.severity.toString()))
+                // console.log(severityArray.indexOf(marker.severity.toString()))
 
                 const data = {
                     latitude: marker.latitude,
@@ -68,56 +75,25 @@ const PostMarker = (props) => {
                     user_id: currentUser.uid,
                     description: marker.description ? marker.description : "",
                     severity: severityArray.indexOf(marker.severity.toString())
+
                 }
 
 
-               
+
 
                 axios.post("http://localhost:4000/api/create_point", data)
-                .then((res) => {
-                    console.log(res);
-                    console.log(marker);
+                    .then((res) => {
+                        //console.log(res);
+                        //console.log(marker);
 
-                    setOwnMarkers(markers => [...markers, marker])
-                    setAllMarkers(markers => [...markers, marker]);
-                    setOpenPostMarker(false);
-                    setSuccess(true);
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-
-                // Update markers array in firestore
-             /*  const markerRef = doc(db, 'users', currentUser.userid);
-
-                updateDoc(markerRef,
-                    {
-                        markers: arrayUnion(data)
-                    }
-                ).then(res => {
-                    setOwnMarkers(markers => [...markers, marker])
-                   // setMarkers(markers => [...markers, marker]); // success
-
-                   setAllMarkers(markers => markers.concat(marker));
-
-                    setOpenPostMarker(false);
-                    setSuccess(true);
-                })
+                        setOwnMarkers(markers => [...markers, marker])
+                        setAllMarkers(markers => [...markers, marker]);
+                        setOpenPostMarker(false);
+                        setSuccess(true);
+                    })
                     .catch(err => {
-                        console.log(err)
-                    })*/
-
-
-
-
-                // axios.post('url', data).
-
-
-
-
-
-
-
+                        console.log(err);
+                    })
 
 
             } else {
@@ -148,7 +124,7 @@ const PostMarker = (props) => {
         >
 
             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClosePostMarker}>
-                <Typography id="transition-modal-title"  >
+                <Typography id="transition-modal-title" style={{color:"#000000"}} >
                     Thank you for using our product!
                 </Typography>
             </BootstrapDialogTitle>
@@ -167,7 +143,7 @@ const PostMarker = (props) => {
                 <br />
                 <br />
 
-                <Typography id="transition-modal-title" variant="h6" component="h6">
+                <Typography id="transition-modal-title" variant="h6" component="h6" style={{color:"#000000"}}>
                     Please describe the level of severity of this Flood
                 </Typography>
 

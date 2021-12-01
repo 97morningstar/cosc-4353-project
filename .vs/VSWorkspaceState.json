@@ -2,9 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\client",
-    "\\client\\src",
-    "\\client\\src\\components"
+    "\\client\\src"
   ],
-  "SelectedNode": "\\.travis.yml",
   "PreviewInSolutionExplorer": false
 }

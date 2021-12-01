@@ -8,6 +8,8 @@ import { styled } from '@mui/material/styles';
 import MainPage from '../assets/video.mp4';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import '../App.css'
+
 
 // Sign In
 
@@ -19,7 +21,12 @@ import {
     useHistory,
 } from 'react-router-dom';
 
+// Elements
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import Hero from './sections/Hero';
 
+import FeaturesSplit from '../components/sections/FeaturesSplit';
 
 const VideoPlayer = styled(CardMedia)`
     position: absolute;
@@ -49,124 +56,10 @@ const Home = () => {
 
     // This is ready to add more components
     return (<>
-
-        <Grid container >
-
-            <Grid item xs={12}
-                style={{
-                    position: 'relative',
-
-                    display: 'flex',
-                    height: '56rem'
-                }}
-            >
-                <Grid item xs={12} style={{ height: 'auto', height: '100%' }}>
-                    <VideoPlayer
-                        component="video"
-                        className='video'
-                        image={MainPage}
-                        autoPlay
-                        loop
-                    />
-                </Grid>
-
-
-                <Grid item xs={12}
-                    style={{
-                        position: 'absolute',
-                        padding: '2rem 2rem 2rem 4rem',
-                        bottom: '0px',
-                        height: 'auto',
-                    }}
-                >
-                    <Typography id="transition-modal-title" variant="h3" component="h3"
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        NextFlood
-                    </Typography>
-                    <br />
-                    <Typography id="transition-modal-title" variant="h5" component="h5"
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        Welcome to the place where you can make our communities a safer place after rainfall events
-                    </Typography>
-                    <br />
-                    <Button onClick={handleLogIn} autoFocus variant="contained" color="primary" size="large" >
-                        GET STARTED LOG IN
-                    </Button>
-                    <br />
-                    <br />
-                    <Button onClick={handleSignUp} autoFocus variant="contained" color="primary" size="large" >
-                        SIGN UP
-                    </Button>
-                    <br />
-                    <br />
-
-                    <Button onClick={handleMap} autoFocus variant="contained" color="primary" size="large" >
-                        EXPLORE THE FLOOD MAP
-                    </Button>
-                    <br />
-                    <Typography id="transition-modal-title" variant="h3" component="h3"
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        <br />
-                        Here are some of the cool features that NextFlood has to offer it's users:
-                        <br />
-                    </Typography>
-                    <Typography id="transition-modal-title" variant="h6" component="h6"
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        <br />
-                        Posting Feature - A user can add map markers where floods are occuring in the Houston area
-                        <br />
-                        Real Time Map - Users will be able to visualize real-time data from our network
-                        <br />
-                        Information Feed - Users will be able to visually see the most up to date information from sites like fema.gov and weather.gov in a feed
-                        <br />
-                        Geolocate User - Users can specify their location to visualize affected areas near them
-                        <br />
-                        Search bar - Users can search and locate areas where they wish to know about the flood
-                        <br />
-                        Clickable Flood Markers - Users can vizualize the information on each marker
-                        <br />
-
-                    </Typography>
-                    <br />
-                    <Typography id="transition-modal-title" variant="h3" component="h3"
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        About Us:
-                        <br />
-                    </Typography>
-                    <Typography id="transition-modal-title" variant="h6" component="h6"
-                        style={{
-                            color: '#fff'
-                        }}
-                    >
-                        ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        <br />
-                        We are for the community, real estate and insurance companies, and any Houstonian who
-                        needs immediate information about overflowing and critical high-level water in
-                        <br /> our
-                        neighborhoods and localities. NextFlood is a web application that will help the
-                        population be up to date to the second with the floods due to hurricanes and tropical
-                        <br /> storms that affect us and our loved ones every year.
-                        <br />
-                    </Typography>
-                </Grid>
-            </Grid>
-        </Grid>
+        <Header navPosition="right" className="reveal-from-bottom" />
+        <Hero className="illustration-section-01"  style={{ marginTop: '40px'}}/>
+        <FeaturesSplit invertMobile topDivider imageFill className="illustration-section-02" />
+        <Footer />
 
 
 
@@ -182,7 +75,6 @@ const Home = () => {
 
 
 
-        {/*  <FloodMap /> */}
 
     </>
     );
