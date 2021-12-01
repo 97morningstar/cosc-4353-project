@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import Header from './components/layout/Header';
-import Home from './components/Home';
 
 import firebase from 'firebase/compat/app';
 
@@ -18,12 +17,7 @@ test('renders Header component', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
- test('renders Home component', () => {
-  render(<Home />);
-  const linkElement = screen.getByText(/NextFlood/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
+//Render
 
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
