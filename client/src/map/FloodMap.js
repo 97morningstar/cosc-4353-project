@@ -29,6 +29,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import Typography from '@mui/material/Typography';
 import HelpIcon from '@mui/icons-material/Help';
+import Image from '../components/elements/Image';
+import LogoImg from './NextFlood.png';
 
 import {
   useHistory,
@@ -157,15 +159,22 @@ const FloodMap = () => {
         <AppBar
 
           position="fixed" style={{
-            background: "rgba(25,118,210,1)",
+            background: "#21317e",
             display: "flex",
             width: "100%",
+            height: '60px'
           }}>
 
           <Toolbar>
             <Grid item xs={1}>
               <Link href="/" style={{ color: '#fff' }}>
-                NextFlood
+              <Image
+         
+            src={LogoImg}
+            alt="Open"
+            width={82}
+            height={82} />
+          
               </Link>
             </Grid>
             <Grid ref={geocoderContainerRef} item xs={8} justifyContent="flex-end" style={{ marginRight: '20px' }}>
@@ -174,10 +183,10 @@ const FloodMap = () => {
 
             {currentUser ? (
               <>
-                <Grid item xs={1} style={{ textAlign: 'end' }}>
+                <Grid item xs={2} style={{ textAlign: 'end' }}>
                   Hello {currentUser.firstName}!
                 </Grid>
-                <Grid item xs={1} style={{ textAlign: 'end' }}>
+                <Grid item xs={2} style={{ textAlign: 'end' }}>
                   <Button
                     size="small"
                     color="inherit"
@@ -285,7 +294,7 @@ const FloodMap = () => {
             '& .MuiDrawer-paper': {
               width: drawerWidth,
               boxSizing: 'border-box',
-              top: '4em !important',
+              top: '3em !important',
 
             },
 
@@ -296,7 +305,7 @@ const FloodMap = () => {
         >
           <DrawerHeader>
             <AnnouncementIcon />
-            <Typography component="h1" variant="h6" sx={{ margin: '10px' }} >
+            <Typography component="h1" variant="h6" sx={{ fontSize: '20px',margin: '10px', color:"#000000"}}  >
               Weather Alerts for this location
             </Typography>
             <IconButton onClick={handleDrawerClose}>
@@ -308,7 +317,7 @@ const FloodMap = () => {
             alerts.map(item => {
 
               return <>
-                <Grid container spacing={2} sx={{ whiteSpace: 'pre-wrap', padding: '10px' }}>
+                <Grid container spacing={2} sx={{ whiteSpace: 'pre-wrap', padding: '10px', fontSize: '15px' }}>
                   <Grid item xs={12} sm={12} sx={{ whiteSpace: 'pre-wrap' }}> {item.properties.headline} </Grid>
 
                   <Grid item xs={12} sm={12} sx={{ whiteSpace: 'pre-wrap' }}>

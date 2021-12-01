@@ -95,25 +95,6 @@ const PostMarker = (props) => {
                         console.log(err);
                     })
 
-                // Update markers array in firestore
-                /*  const markerRef = doc(db, 'users', currentUser.userid);
-   
-                   updateDoc(markerRef,
-                       {
-                           markers: arrayUnion(data)
-                       }
-                   ).then(res => {
-                       setOwnMarkers(markers => [...markers, marker])
-                      // setMarkers(markers => [...markers, marker]); // success
-   
-                      setAllMarkers(markers => markers.concat(marker));
-   
-                       setOpenPostMarker(false);
-                       setSuccess(true);
-                   })
-                       .catch(err => {
-                           console.log(err)
-                       })*/
 
             } else {
                 // error
@@ -143,7 +124,7 @@ const PostMarker = (props) => {
         >
 
             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClosePostMarker}>
-                <Typography id="transition-modal-title"  >
+                <Typography id="transition-modal-title" style={{color:"#000000"}} >
                     Thank you for using our product!
                 </Typography>
             </BootstrapDialogTitle>
@@ -162,7 +143,7 @@ const PostMarker = (props) => {
                 <br />
                 <br />
 
-                <Typography id="transition-modal-title" variant="h6" component="h6">
+                <Typography id="transition-modal-title" variant="h6" component="h6" style={{color:"#000000"}}>
                     Please describe the level of severity of this Flood
                 </Typography>
 

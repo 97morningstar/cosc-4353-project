@@ -26,17 +26,17 @@ const ViewMarker = (props) => {
 
     >
       <BootstrapDialogTitle id="customized-dialog-title" onClose={handleCloseViewMarker}>
-        <Typography id="transition-modal-title" >
+        <Typography id="transition-modal-title" style={{color:"#000000"}}>
           Marker Details
         </Typography>
       </BootstrapDialogTitle>
       <DialogContent dividers >
         <br />
         <br />
-        <Typography id="transition-modal-title" variant="h6" component="h6">
+        <Typography id="transition-modal-title" variant="h6" component="h6" style={{color:"#000000"}}>
           Description:
         </Typography>
-        <Typography id="transition-modal-title" variant="p" component="p">
+        <Typography id="transition-modal-title" variant="p" component="p" >
           {information.description ? (
             <>
               {` ${information.description}`}
@@ -48,7 +48,7 @@ const ViewMarker = (props) => {
           }
         </Typography>
         <br />
-        <Typography id="transition-modal-title" variant="h6" component="h6">
+        <Typography id="transition-modal-title" variant="h6" component="h6" style={{color:"#000000"}}>
           Created On:
         </Typography>
         <Typography id="transition-modal-title" variant="body2" >
@@ -66,7 +66,7 @@ const ViewMarker = (props) => {
         </Typography>
         <br />
 
-        <Typography id="transition-modal-title" variant="h6" component="h6">
+        <Typography id="transition-modal-title" variant="h6" component="h6" style={{color:"#000000"}}>
           Level of Severity:
         </Typography>
         <Typography className={"typography" + information.severity} id="transition-modal-title" variant="h6" component="h6">

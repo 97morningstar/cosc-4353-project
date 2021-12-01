@@ -107,7 +107,7 @@ export default function LogIn() {
           </Alert>
         </Collapse>
 
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" style={{color:"#000000"}}>
           Sign in
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -144,13 +144,9 @@ export default function LogIn() {
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+            
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link href="/signup" variant="body2" style={{color:"#000000"}}>
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
