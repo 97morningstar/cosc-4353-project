@@ -12,7 +12,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-// Success/Error Alerts
+// Success/Error Alerts 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { AuthContext } from '../context/AuthContext';
@@ -21,6 +21,8 @@ import { db } from '../firebase/firebase'
 import { collection, addDoc } from "firebase/firestore";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import axios from "axios";
+import AWS from 'aws-sdk'
+//import S3FileUpload from 'react-s3'
 
 import socketIOClient from "socket.io-client";
 import socketClient from "socket.io-client";
@@ -35,8 +37,51 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 
-const PostMarker = (props) => {
 
+const PostMarker = (props) => {
+    const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME,
+    const REGION = 'us-east-2'
+    const urlPath = 'https://floodimagebucket.s3.us-east-2.amazonaws.com/'
+
+    AWS.config.update({
+        accessKeyId: process.env.REACT_APP_ACCESS_ID,
+        secretAccessKey: process.env.REACT_APP_ACCESS_KEY
+    })
+
+    const myBucket = new AWS.S3({
+        params: {Bucket: S3_BUCKET},
+        region: REGION
+    })
+
+    const [progress, setProgress] = useState(0);
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileInput = (e) => {
+        setSelectedFile(e.target.files[0])
+    }
+    const [imageUrl, setImageUrl] = useState(null)
+
+
+    const uploadFile = (file) => {
+        const params = {
+            Body: file,
+            Bucket: S3_BUCKET,
+            Key: file.name
+        };
+        setImageUrl({
+            imageUrl: urlPath+params.Key
+        })
+        console.log(params.Key)
+        myBucket.putObject(params)
+            .on('httpUploadProgress', (evt) => {
+                setProgress(Math.round((evt.loaded / evt.total) * 100))
+            })
+            .send((err) => {
+                if (err) console.log(err)
+            })
+        //imageUrl = ("https://floodimagebucket.s3.us-east-2.amazonaws.com/" + params.Key)
+        //console.log(imageUrl)
+    }
     const { currentUser } = React.useContext(AuthContext);
     const { marker, setMarker, setAllMarkers, openPostMarker, setOpenPostMarker, setOwnMarkers } = props;
 
@@ -57,6 +102,7 @@ const PostMarker = (props) => {
             [e.target.name]: e.target.value,
         });
     };
+    
 
     const handleSave = () => {
 
@@ -74,12 +120,9 @@ const PostMarker = (props) => {
                     longitude: marker.longitude,
                     user_id: currentUser.uid,
                     description: marker.description ? marker.description : "",
-                    severity: severityArray.indexOf(marker.severity.toString())
-
+                    severity: severityArray.indexOf(marker.severity.toString()),
+                    image: imageUrl ? imageUrl : "" 
                 }
-
-
-
 
                 axios.post("http://localhost:4000/api/create_point", data)
                     .then((res) => {
@@ -94,6 +137,38 @@ const PostMarker = (props) => {
                     .catch(err => {
                         console.log(err);
                     })
+
+                // Update markers array in firestore
+                /*  const markerRef = doc(db, 'users', currentUser.userid);
+   
+                   updateDoc(markerRef,
+                       {
+                           markers: arrayUnion(data)
+                       }
+                   ).then(res => {
+                       setOwnMarkers(markers => [...   markers, marker])
+                      // setMarkers(markers => [...markers, marker]); // success
+   
+                      setAllMarkers(markers => markers.concat(marker));
+   
+                       setOpenPostMarker(false);
+                       setSuccess(true);
+                   })
+                       .catch(err => {
+                           console.log(err)
+                       })*/
+
+
+
+
+                // axios.post('url', data).
+
+
+
+
+
+
+
 
 
             } else {
@@ -113,6 +188,8 @@ const PostMarker = (props) => {
     const handleCloseError = () => {
         setError(false);
     }
+
+
 
 
     return (<>
@@ -208,10 +285,20 @@ const PostMarker = (props) => {
 
                     />
                 </RadioGroup>
+
+
+                <Typography id="transition-modal-title" variant="h6" component="h6">
+                    Please include any images of the Flood
+                </Typography>
+
+                <div>Upload Progress: {progress}%</div>
+                <input type="file" onChange={handleFileInput}/>
+                {/* <button onClick={() => uploadFile(selectedFile)}> Upload to S3 </button> */}
+
             </DialogContent>
             <DialogActions>
                 <Stack spacing={2} direction="row">
-                    <Button type="submit" onClick={handleSave} autoFocus variant="contained" color="primary" size="large" endIcon={<SendIcon />}>
+                    <Button type="submit" onClick={() => {handleSave(); uploadFile(selectedFile);}} autoFocus variant="contained" color="primary" size="large" endIcon={<SendIcon />}>
                         POST
                     </Button>
                     <Button onClick={handleClosePostMarker} variant="outlined" color="error" size="large" endIcon={<CancelIcon />}>
