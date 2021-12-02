@@ -45,13 +45,13 @@ const PostMarker = (props) => {
     //     accessKeyId: 'AKIAQIYCI44RQFXMFKWM',
     //     secretAccessKey: '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'
     // }
-    const S3_BUCKET = 'floodimagebucket'
+    const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME,
     const REGION = 'us-east-2'
     const urlPath = 'https://floodimagebucket.s3.us-east-2.amazonaws.com/'
 
     AWS.config.update({
-        accessKeyId: 'AKIAQIYCI44RQFXMFKWM',
-        secretAccessKey: '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'
+        accessKeyId: process.env.REACT_APP_ACCESS_ID,
+        secretAccessKey: process.env.REACT_APP_ACCESS_KEY
     })
 
     const myBucket = new AWS.S3({
