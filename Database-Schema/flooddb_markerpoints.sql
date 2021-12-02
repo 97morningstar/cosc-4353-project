@@ -39,6 +39,7 @@ CREATE TABLE `markerpoints` (
   `longitude` decimal(8,6) NOT NULL,
   `description` varchar(500) DEFAULT NULL,
   `severity` varchar(1) DEFAULT NULL,
+  'image' varchar(2083) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   CONSTRAINT `severitychecker` CHECK ((`severity` in (_utf8mb4'1',_utf8mb4'2',_utf8mb4'3',_utf8mb4'4',_utf8mb4'5')))
