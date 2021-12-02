@@ -79,6 +79,23 @@ const ViewMarker = (props) => {
           }
         </Typography>
           <br/>
+        <Typography id="transition-modal-title" variant="h6" component="h6">
+          Include any images of the floodzone:
+        </Typography>
+        <Typography id="transition-modal-title" variant="p" component="p">
+          {information.image ? (
+            <>
+              {` ${information.image}`}
+            </>
+          ) : (<>
+            No image provided for this event.
+          </>
+          )
+          }
+        </Typography>
+        <br />
+
+
         <Typography id="transition-modal-title" variant="caption" >
           {currentUser && information.user_id == currentUser.uid ? (
             <>

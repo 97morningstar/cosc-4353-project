@@ -97,7 +97,8 @@ export default function AuthProvider({ children }) {
                           severity: severityArray[data.severity],
                           description: data.description,
                           user_id: data.user_id,
-                         created_on: finalDateFormatted
+                         created_on: finalDateFormatted,
+                         image: data.image
                       }
                   }));
 
