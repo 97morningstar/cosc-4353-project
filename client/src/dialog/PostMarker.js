@@ -39,12 +39,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 
 const PostMarker = (props) => {
-    // const config = {
-    //     bucketName: 'floodimagebucket',
-    //     region:'us-east-2',
-    //     accessKeyId: 'AKIAQIYCI44RQFXMFKWM',
-    //     secretAccessKey: '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'
-    // }
     const S3_BUCKET = process.env.REACT_APP_BUCKET_NAME,
     const REGION = 'us-east-2'
     const urlPath = 'https://floodimagebucket.s3.us-east-2.amazonaws.com/'
