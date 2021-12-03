@@ -29,7 +29,7 @@ password: 123456
 ##### Note
 All authentication and authorization handled by microservice provided by Google: Firebase Authentication, and Firbase Firestore Database
 
-##### How to install
+## How to install
 Look at INSTALL.md for instructions as to how to install the software
 
 ### All of our queries and code are in the following files :hammer:
